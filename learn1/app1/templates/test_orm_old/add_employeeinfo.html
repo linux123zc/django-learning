@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div align="center">
+        <h1>增加员工信息</h1>
+        <hr>
+        <form action="/test_orm_old/add_employeeinfo_old/" method="post">
+            {% csrf_token %}
+            <div>
+                <label for="">电话号码</label>
+                <input type="text" name="phone" id="phone">
+            </div>
+            <br>
+            <div>
+                <label for="">地址</label>
+                <input type="text" name="address" id="address">
+            </div>
+            <br>
+            <div><input type="submit" value="添加"></div>
+        </form>
+        <div style="color:red;">{{ error_info }}</div>
+    </div>
+</body>
+</html>
