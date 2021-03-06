@@ -3,10 +3,10 @@ from django.urls import path, include
 from employee.views import *
 
 urlpatterns = [
-    # path('list_employee_old', list_employee_old),
-    # path('add_employee_old', add_employee_old),
-    # path('edit_employee_old/<int:emp_id>', edit_employee_old),
-    # path('del_employee_old/<int:emp_id>', del_employee_old),
+    path('list_employee_old/', list_employee_old),
+    path('add_employee_old/', add_employee_old),
+    path('edit_employee_old/<int:emp_id>/', edit_employee_old),
+    path('del_employee_old/<int:emp_id>/', del_employee_old),
 
     path('list_dep_old/', list_dep_old),
     path('add_dep_old/', add_dep_old),

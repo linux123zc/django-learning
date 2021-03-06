@@ -134,3 +134,53 @@ def edit_employeeinfo_old(request, info_id):
     else:
         info_object = employeeinfo.objects.get(id=info_id)
         return render(request, 'test_orm_old/edit_employeeinfo.html', {'info':info_object})
+
+############################################3
+def list_employee_old(request):
+    emp = employee.objects.all()
+    return render(request, 'test_orm_old/list_employee.html', {'emp_list':emp})
+
+def del_employee_old(request, emp_id):
+    emp = employee.objects.get(id=emp_id)
+    emp.delete()
+    return redirect('/test_orm_old/list_employee_old/')
+
+
+def add_employee_old(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        dep = request.POST.get('dep')
+        info = request.POST.get('info')
+        salary = request.POST.get('salary')
+
+        groups = request.POST.getlist("group")
+        new_emp = employee.objects.create(name=name, email=email, salary=salary, dep_id=dep, info_id=info)
+        new_emp.group.set(groups)
+        return redirect('/test_orm_old/list_employee_old/')
+    dep_list = department.objects.all()
+    group_list = group.objects.all()
+    info_list = employeeinfo.objects.all()
+    return render(request, 'test_orm_old/add_employee.html', {'dep_list':dep_list, 'group_list':group_list, 'info_list':info_list})
+
+def edit_employee_old(request, emp_id):
+    if request.method == 'POST':
+        id = request.POST.get('id')
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        dep = request.POST.get('dep')
+        info = request.POST.get('info')
+        groups = request.POST.getlist('group')
+        emp = employee.objects.get(id=id)
+        emp.name = name
+        emp.email = email
+        emp.dep_id = dep
+        emp.info_id = info
+        emp.group.set(groups)
+        emp.save()
+        return redirect('/test_orm_old/list_employee_old/')
+    emp = employee.objects.get(id=emp_id)
+    dep_list = department.objects.all()
+    group_list = group.objects.all()
+    info_list = employeeinfo.objects.all()
+    return render(request, 'test_orm_old/edit_employee.html', {'emp':emp, 'dep_list':dep_list, 'group_list':group_list, 'info_list':info_list})
