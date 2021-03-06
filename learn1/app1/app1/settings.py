@@ -90,7 +90,7 @@ DATABASES = {
         'PORT': '3306',
         'NAME': 'test_orm',
         'USER': 'root',
-        'PASSWORD': '123456ZC',
+        'PASSWORD': '123456zc',
     }
 }
 
